@@ -1,0 +1,25 @@
+<ActionBar title="电池信息" class="action-bar">
+</ActionBar>
+
+<ScrollView>
+  <StackLayout class="home-panel">
+    <Label [text]="'当前电量: ' + batteryLevel + '%'" class="battery-level"></Label>
+
+    <Label text="今日充放电情况" class="section-title"></Label>
+    <GridLayout rows="200" columns="*">
+      <CartesianChart row="0">
+        <LineSeries [items]="chargingHistory" categoryProperty="time" valueProperty="level"></LineSeries>
+      </CartesianChart>
+    </GridLayout>
+
+    <Label text="应用耗电占比" class="section-title"></Label>
+    <ListView [items]="appUsage" class="list-group">
+      <ng-template let-item="item">
+        <GridLayout columns="*, auto" class="list-group-item">
+          <Label [text]="item.name" col="0"></Label>
+          <Label [text]="item.usage + '%'" col="1" class="usage-percentage"></Label>
+        </GridLayout>
+      </ng-template>
+    </ListView>
+  </StackLayout>
+</ScrollView>
